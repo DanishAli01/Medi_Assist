@@ -31,10 +31,22 @@ public class LoginActivity extends AppCompatActivity {
         loginbutton = (Button) findViewById(R.id.btn_login);
         signuppath = (TextView) findViewById(R.id.link_signup);
 
+
+
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 login();
+            }
+        });
+
+        signuppath.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent signupswitch = new Intent(LoginActivity.this,SignupActvity.class);
+                LoginActivity.this.startActivity(signupswitch);
+
             }
         });
 
