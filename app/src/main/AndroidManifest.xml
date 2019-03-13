@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.danishali.assignment03.myapplication">
 
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,10 +27,14 @@
             </intent-filter>
 
         </activity>
+        <activity android:name=".ImageReader">
+
+        </activity>
 
         <activity android:name=".SignupActvity" android:theme="@style/AppTheme" />
 
-
+        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="ocr"/>
 
     </application>
 

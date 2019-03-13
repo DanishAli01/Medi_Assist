@@ -1,35 +1,57 @@
 package com.example.danishali.assignment03.myapplication;
 
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class SignupActvity extends AppCompatActivity {
 
     private static final String TAG = "SignupActivity";
+    private CardView profile;
+    private CardView medicalcard;
 
-
-    private EditText nametextview;
-    private EditText emailtextview;
-    private EditText passwordtextview;
-    private Button signupbutton;
-    private TextView loginpath;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_main);
+
+        profile = (CardView) findViewById(R.id.profile);
+        medicalcard = (CardView)findViewById(R.id.medicalcard);
+
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Toast.makeText(SignupActvity.this, "yeah", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder profile_dialogue = new AlertDialog.Builder(SignupActvity.this);
+                View profileview = getLayoutInflater().inflate(R.layout.profile_dialogue,null);
+                profile_dialogue.setView(profileview);
+                AlertDialog dialog = profile_dialogue.create();
+                dialog.show();
+            }
+        });
+
+
+        medicalcard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mainswitch = new Intent(SignupActvity.this,ImageReader.class);
+                SignupActvity.this.startActivity(mainswitch);
+
+            }
+        });
+
+
 
 //
 //        nametextview = (EditText) findViewById(R.id.input_name);
