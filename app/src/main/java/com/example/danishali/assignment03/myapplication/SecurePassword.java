@@ -20,7 +20,7 @@ public class SecurePassword {
         return foldValue64;
 
     }
-
+//
     public static String UNFOLD(String value) throws Exception
     {
         Key key = PRIVATEKEYGENERATOR();
