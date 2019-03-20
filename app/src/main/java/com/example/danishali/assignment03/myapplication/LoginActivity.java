@@ -32,10 +32,17 @@ public class LoginActivity extends AppCompatActivity {
         signuppath = (TextView) findViewById(R.id.link_signup);
 
 
-
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                try {
+                    Toast.makeText(LoginActivity.this, "Got it :"+SecurePassword.FOLD("Dansiha"), Toast.LENGTH_LONG).show();
+                   // Toast.makeText(LoginActivity.this, "Got it :"+SecurePassword.UNFOLD(""+SecurePassword.FOLD("Dansiha")), Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 login();
             }
         });

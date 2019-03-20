@@ -2,6 +2,7 @@ package com.example.danishali.assignment03.myapplication;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -29,6 +31,7 @@ public class ImageReader extends AppCompatActivity {
     private SurfaceView surfaceView_signup;
     private TextView textView_signup_medicalcard;
     private CameraSource cameraSource;
+    private String helper = " ";
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)  {
         switch (requestCode){
@@ -78,6 +81,7 @@ public class ImageReader extends AppCompatActivity {
                             .setRequestedFps(2.0f)
                             .setAutoFocusEnabled(true)
                             .build();
+
 
                     surfaceView_signup.getHolder().addCallback(new SurfaceHolder.Callback() {
                         @Override
@@ -134,8 +138,11 @@ public class ImageReader extends AppCompatActivity {
                                             stringBuilder.append("\n");
 
                                         }
-
-                                        textView_signup_medicalcard.setText(stringBuilder.toString());
+                                        helper = stringBuilder.toString();
+                                        Toast.makeText(ImageReader.this, "Got it :"+helper, Toast.LENGTH_SHORT).show();
+                                        Intent mainswitch = new Intent(ImageReader.this,SignupActvity.class);
+                                        ImageReader.this.startActivity(mainswitch);
+                                        //textView_signup_medicalcard.setText(stringBuilder.toString());
 
                                     }
                                 });
