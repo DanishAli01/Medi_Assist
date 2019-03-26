@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".com.example.danishali.assignment03.myapplication.DashBoard.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
 
-        <activity android:name=".LoginActivity"
+        <activity android:name=".com.example.danishali.assignment03.myapplication.Accounts.LoginActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,11 +27,11 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".ImageReader">
+        <activity android:name=".com.example.danishali.assignment03.myapplication.ImageReader.ImageReader">
 
         </activity>
 
-        <activity android:name=".SignupActvity" android:theme="@style/AppTheme" />
+        <activity android:name=".com.example.danishali.assignment03.myapplication.Accounts.SignupActvity" android:theme="@style/AppTheme" />
 
         <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="ocr"/>

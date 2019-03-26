@@ -1,4 +1,4 @@
-package com.example.danishali.assignment03.myapplication;
+package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.ImageReader;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -16,7 +16,8 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.example.danishali.assignment03.myapplication.R;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts.SignupActvity;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
@@ -140,7 +141,7 @@ public class ImageReader extends AppCompatActivity {
                                         }
                                         helper = stringBuilder.toString();
                                         Toast.makeText(ImageReader.this, "Got it :"+helper, Toast.LENGTH_SHORT).show();
-                                        Intent mainswitch = new Intent(ImageReader.this,SignupActvity.class);
+                                        Intent mainswitch = new Intent(ImageReader.this, SignupActvity.class);
                                         ImageReader.this.startActivity(mainswitch);
                                         //textView_signup_medicalcard.setText(stringBuilder.toString());
 

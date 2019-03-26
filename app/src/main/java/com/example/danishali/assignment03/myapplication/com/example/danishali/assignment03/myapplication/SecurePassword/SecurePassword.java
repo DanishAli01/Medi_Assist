@@ -1,4 +1,4 @@
-package com.example.danishali.assignment03.myapplication;
+package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.SecurePassword;
 
 import android.util.Base64;
 import java.security.Key;

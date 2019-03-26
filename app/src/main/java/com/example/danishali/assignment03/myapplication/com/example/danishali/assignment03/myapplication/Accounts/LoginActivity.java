@@ -1,4 +1,4 @@
-package com.example.danishali.assignment03.myapplication;
+package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts;
 //My Push & Commit Check
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.DashBoard.MainActivity;
+import com.example.danishali.assignment03.myapplication.R;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.SecurePassword.SecurePassword;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -37,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 try {
-                    Toast.makeText(LoginActivity.this, "Got it :"+SecurePassword.FOLD("Dansiha"), Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Got it :"+ SecurePassword.FOLD("Dansiha"), Toast.LENGTH_LONG).show();
                    // Toast.makeText(LoginActivity.this, "Got it :"+SecurePassword.UNFOLD(""+SecurePassword.FOLD("Dansiha")), Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -51,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent signupswitch = new Intent(LoginActivity.this,SignupActvity.class);
+                Intent signupswitch = new Intent(LoginActivity.this, SignupActvity.class);
                 LoginActivity.this.startActivity(signupswitch);
 
             }
@@ -127,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginSuccess() {
-        Intent mainswitch = new Intent(LoginActivity.this,MainActivity.class);
+        Intent mainswitch = new Intent(LoginActivity.this, MainActivity.class);
         LoginActivity.this.startActivity(mainswitch);
         loginbutton.setEnabled(true);
     }

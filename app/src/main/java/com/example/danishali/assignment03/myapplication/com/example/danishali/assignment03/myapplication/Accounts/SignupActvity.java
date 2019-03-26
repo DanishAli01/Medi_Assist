@@ -1,4 +1,4 @@
-package com.example.danishali.assignment03.myapplication;
+package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -11,6 +11,9 @@ import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.example.danishali.assignment03.myapplication.R;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.ImageReader.ImageReader;
 
 public class SignupActvity extends AppCompatActivity {
 
@@ -45,7 +48,7 @@ public class SignupActvity extends AppCompatActivity {
         medicalcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent mainswitch = new Intent(SignupActvity.this,ImageReader.class);
+                Intent mainswitch = new Intent(SignupActvity.this, ImageReader.class);
                 SignupActvity.this.startActivity(mainswitch);
 
             }
