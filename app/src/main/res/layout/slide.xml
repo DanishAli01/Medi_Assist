@@ -1,90 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Slidelinearlayout"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:layout_marginTop="100dp"
+    android:gravity="top|center_horizontal"
+    android:orientation="vertical">
+
     <ImageView
+        android:layout_marginTop="40dp"
         android:id="@+id/slideimg"
-        android:layout_width="200dp"
-        android:layout_height="200dp" />
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter" />
 
     <EditText
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="TitleHere"
         android:textSize="10sp"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"/>
+        android:textStyle="bold" />
+
     <EditText
-        android:textAlignment="center"
         android:id="@+id/DescritpitonHere"
-        android:text="Description"
-        android:textSize="10sp"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp">
+        android:layout_marginTop="20dp"
+        android:text="Description"
+        android:textAlignment="center"
+        android:textSize="10sp" />
 
-        <EditText
-            android:id="@+id/input_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Name"
-            android:inputType="textCapWords" />
-    </android.support.design.widget.TextInputLayout>
+    <!--<android.support.design.widget.TextInputLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:layout_marginBottom="8dp">-->
 
-    <!-- Email Label -->
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp">
-        <EditText android:id="@+id/input_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="Email" />
-    </android.support.design.widget.TextInputLayout>
+    <!--<EditText-->
+    <!--android:id="@+id/input_name"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:hint="Name"-->
+    <!--android:inputType="textCapWords" />-->
+    <!--</android.support.design.widget.TextInputLayout>-->
 
-    <!-- Password Label -->
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp">
-        <EditText android:id="@+id/input_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="Password"/>
-    </android.support.design.widget.TextInputLayout>
+    <!--&lt;!&ndash; Email Label &ndash;&gt;-->
+    <!--<android.support.design.widget.TextInputLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:layout_marginBottom="8dp">-->
+    <!--<EditText android:id="@+id/input_email"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:inputType="textEmailAddress"-->
+    <!--android:hint="Email" />-->
+    <!--</android.support.design.widget.TextInputLayout>-->
 
-    <!-- Signup Button -->
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_signup"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        android:padding="12dp"
-        android:text="Create Account"/>
+    <!--&lt;!&ndash; Password Label &ndash;&gt;-->
+    <!--<android.support.design.widget.TextInputLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:layout_marginBottom="8dp">-->
+    <!--<EditText android:id="@+id/input_password"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:inputType="textPassword"-->
+    <!--android:hint="Password"/>-->
+    <!--</android.support.design.widget.TextInputLayout>-->
 
-    <TextView android:id="@+id/link_login"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="Already a member? Login"
-        android:gravity="center"
-        android:textSize="16dip"/>
+    <!--&lt;!&ndash; Signup Button &ndash;&gt;-->
+    <!--<android.support.v7.widget.AppCompatButton-->
+    <!--android:id="@+id/btn_signup"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="24dp"-->
+    <!--android:layout_marginBottom="24dp"-->
+    <!--android:padding="12dp"-->
+    <!--android:text="Create Account"/>-->
+
+    <!--<TextView android:id="@+id/link_login"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="24dp"-->
+    <!--android:text="Already a member? Login"-->
+    <!--android:gravity="center"-->
+    <!--android:textSize="16dip"/>-->
 
 
 </LinearLayout>

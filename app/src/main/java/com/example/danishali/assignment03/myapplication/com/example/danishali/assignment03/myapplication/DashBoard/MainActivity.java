@@ -13,15 +13,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.danishali.assignment03.myapplication.R;
 import com.example.danishali.assignment03.myapplication.SlideAdapter;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.PersonalProfile.GivenAddress;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.PersonalProfile.GivenContact;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.PersonalProfile.PersonProfile;
+
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ViewPager viewPager;
     private SlideAdapter slideAdapter;
+    private TextView nav_header_title;
 
 
     @Override
@@ -32,6 +39,8 @@ public class MainActivity extends AppCompatActivity
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         slideAdapter = new SlideAdapter(this);
         viewPager.setAdapter(slideAdapter);
+        nav_header_title = (TextView)  findViewById(R.id.nav_header_profile);
+        //nav_header_title.setText();
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -48,6 +57,8 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -115,4 +126,9 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+   GivenAddress address = new GivenAddress("16 Summer Street","Dublin","Dublin 03","TW20D03");
+    GivenContact contact = new GivenContact("0892-324","421321","danishali158@gmail.com");
+   PersonProfile personalprofile = new PersonProfile("123",contact,"A+ve","Danish Ali","Male","30/09/1994",address);
+
 }

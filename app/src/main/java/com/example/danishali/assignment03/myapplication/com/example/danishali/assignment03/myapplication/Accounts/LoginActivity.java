@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.DashBoard.MainActivity;
 import com.example.danishali.assignment03.myapplication.R;
-import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.SecurePassword.SecurePassword;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.RestServices.ProfileRemoteDAO;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginbutton;
     private TextView signuppath;
 
+    private ProfileRemoteDAO profileRemoteDAO;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,19 +37,22 @@ public class LoginActivity extends AppCompatActivity {
         loginbutton = (Button) findViewById(R.id.btn_login);
         signuppath = (TextView) findViewById(R.id.link_signup);
 
+        profileRemoteDAO = new ProfileRemoteDAO(this);
+
 
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 try {
-                    Toast.makeText(LoginActivity.this, "Got it :"+ SecurePassword.FOLD("Dansiha"), Toast.LENGTH_LONG).show();
+                    profileRemoteDAO.profileRequestHandler();
+//                    Toast.makeText(LoginActivity.this, "Got it :"+ SecurePassword.FOLD("Dansiha"), Toast.LENGTH_LONG).show();
                    // Toast.makeText(LoginActivity.this, "Got it :"+SecurePassword.UNFOLD(""+SecurePassword.FOLD("Dansiha")), Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                login();
+               login();
             }
         });
 

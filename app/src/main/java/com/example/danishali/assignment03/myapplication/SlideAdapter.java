@@ -28,7 +28,7 @@ public class SlideAdapter extends PagerAdapter {
 
     //list of images
     public int [] lst_images = {
-            R.drawable.image_1,
+            R.drawable.profile,
             R.drawable.image_2,
             R.drawable.image_3,
             R.drawable.image_4,
@@ -53,9 +53,9 @@ public class SlideAdapter extends PagerAdapter {
 
     public int [] lst_background = {
 
-            Color.rgb(55,55,55),
-            Color.rgb(239,85,85),
-            Color.rgb(110,49,8),
+            Color.rgb(255,255,255),
+            Color.rgb(255,255,255),
+            Color.rgb(255,255,255),
             Color.rgb(1,188,212)
     };
 
