@@ -51,6 +51,10 @@ public class SlideAdapter extends PagerAdapter {
             "Des 4"
     };
 
+    public void setLst_descriptions(String s){
+        lst_descriptions[0] = s;
+    }
+
     public int [] lst_background = {
 
             Color.rgb(255,255,255),

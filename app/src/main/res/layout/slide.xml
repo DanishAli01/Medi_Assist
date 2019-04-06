@@ -15,7 +15,7 @@
         android:layout_height="50dp"
         android:scaleType="fitCenter" />
 
-    <EditText
+    <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,14 +24,25 @@
         android:textSize="10sp"
         android:textStyle="bold" />
 
-    <EditText
+    <!--<TextView-->
+        <!--android:id="@+id/DescritpitonHere"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:text="Description"-->
+        <!--android:textAlignment="center"-->
+        <!--android:textSize="25sp" />-->
+
+    <TextView
+        android:padding="10dp"
         android:id="@+id/DescritpitonHere"
-        android:layout_width="wrap_content"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Description"
-        android:textAlignment="center"
-        android:textSize="10sp" />
+        android:background="#fff"
+        android:gravity="left"
+        android:textSize="22sp"
+        android:textStyle="normal" />
+
 
     <!--<android.support.design.widget.TextInputLayout-->
     <!--android:layout_width="match_parent"-->

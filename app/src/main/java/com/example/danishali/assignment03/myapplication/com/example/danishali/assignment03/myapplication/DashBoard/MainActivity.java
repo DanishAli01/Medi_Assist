@@ -1,5 +1,6 @@
 package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.DashBoard;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,13 +15,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.danishali.assignment03.myapplication.R;
 import com.example.danishali.assignment03.myapplication.SlideAdapter;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts.LoginActivity;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Models.PersonalProfile;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.PersonalProfile.GivenAddress;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.PersonalProfile.GivenContact;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.PersonalProfile.PersonProfile;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.RestServices.ProfileRemoteDAO;
 
+import org.json.JSONObject;
 
 
 public class MainActivity extends AppCompatActivity
@@ -29,6 +35,8 @@ public class MainActivity extends AppCompatActivity
     private ViewPager viewPager;
     private SlideAdapter slideAdapter;
     private TextView nav_header_title;
+    private ProfileRemoteDAO profileRemoteDAO;
+    private PersonalProfile profile;
 
 
     @Override
@@ -36,10 +44,18 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+       // String profile= getIntent().getStringExtra("Profile");
+
+//receive
+        profile = (PersonalProfile) getIntent().getSerializableExtra("Profile");
+
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         slideAdapter = new SlideAdapter(this);
         viewPager.setAdapter(slideAdapter);
         nav_header_title = (TextView)  findViewById(R.id.nav_header_profile);
+       profileRemoteDAO = new ProfileRemoteDAO(this);
+        slideAdapter.setLst_descriptions(profile.toString());
+
         //nav_header_title.setText();
 
 

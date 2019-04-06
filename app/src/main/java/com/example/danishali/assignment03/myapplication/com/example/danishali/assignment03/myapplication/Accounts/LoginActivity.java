@@ -1,6 +1,8 @@
 package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts;
 //My Push & Commit Check
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,23 +17,24 @@ import com.example.danishali.assignment03.myapplication.com.example.danishali.as
 import com.example.danishali.assignment03.myapplication.R;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.RestServices.ProfileRemoteDAO;
 
+import org.json.JSONObject;
+
+import java.io.Serializable;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
     private  static final int REQUEST_SWITCH = 0;
-
     private EditText edittextview;
     private EditText passwordtextview;
     private Button loginbutton;
     private TextView signuppath;
-
     private ProfileRemoteDAO profileRemoteDAO;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_main);
-
         edittextview = (EditText) findViewById(R.id.input_email);
         passwordtextview = (EditText) findViewById(R.id.input_password);
         loginbutton = (Button) findViewById(R.id.btn_login);
@@ -45,7 +48,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 try {
-                    profileRemoteDAO.profileRequestHandler();
+                   profileRemoteDAO.profileRequestHandler();
+                    Toast.makeText(LoginActivity.this, "Got it :", Toast.LENGTH_LONG).show();
 //                    Toast.makeText(LoginActivity.this, "Got it :"+ SecurePassword.FOLD("Dansiha"), Toast.LENGTH_LONG).show();
                    // Toast.makeText(LoginActivity.this, "Got it :"+SecurePassword.UNFOLD(""+SecurePassword.FOLD("Dansiha")), Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
@@ -137,6 +141,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         Intent mainswitch = new Intent(LoginActivity.this, MainActivity.class);
+        mainswitch.putExtra("Profile", (Serializable) profileRemoteDAO.getProfile());
         LoginActivity.this.startActivity(mainswitch);
         loginbutton.setEnabled(true);
     }
