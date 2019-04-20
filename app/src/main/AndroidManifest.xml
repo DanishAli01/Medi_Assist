@@ -15,19 +15,25 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".com.example.danishali.assignment03.myapplication.Mailer.mailer_activity"
+            android:label="@string/title_activity_mailer_acticity"
+            android:theme="@style/AppTheme.NoActionBar"><intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
+        <activity
+            android:name=".com.example.danishali.assignment03.myapplication.Bookingsystem.customcalender"
+            android:label="@string/title_activity_customcalender">
+        </activity>
+        <activity
             android:name=".com.example.danishali.assignment03.myapplication.DashBoard.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".com.example.danishali.assignment03.myapplication.Accounts.LoginActivity"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".com.example.danishali.assignment03.myapplication.ImageReader.ImageReader"></activity>
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".com.example.danishali.assignment03.myapplication.ImageReader.ImageReader" />
         <activity
             android:name=".com.example.danishali.assignment03.myapplication.Accounts.SignupActvity"
             android:theme="@style/AppTheme" />
