@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".com.example.danishali.assignment03.myapplication.Mailer.mailer_activity"
+    tools:context=".com.example.danishali.assignment03.myapplication.Mailer.Mail"
     tools:showIn="@layout/activity_mailer_activity">
 
 

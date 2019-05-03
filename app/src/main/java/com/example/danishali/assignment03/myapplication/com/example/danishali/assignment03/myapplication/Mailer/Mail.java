@@ -1,5 +1,6 @@
 package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Mailer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,7 +18,7 @@ import javax.mail.Session;
 
 import com.example.danishali.assignment03.myapplication.R;
 
-public class mailer_activity extends AppCompatActivity {
+public class Mail extends AppCompatActivity {
 
     private EditText editTextEmail;
     private EditText editTextSubject;
@@ -30,6 +31,8 @@ public class mailer_activity extends AppCompatActivity {
         setContentView(R.layout.activity_mailer_activity);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Intent intent = getIntent();
 
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextSubject = (EditText) findViewById(R.id.editTextSubject);

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/light"
     android:orientation="vertical"
-    tools:context=".com.example.danishali.assignment03.myapplication.Bookingsystem.customcalender">
+    tools:context=".com.example.danishali.assignment03.myapplication.Bookingsystem.Booking">
 
     <!--<TextView-->
         <!--android:id="@+id/headerofcalender"-->
@@ -50,18 +50,21 @@
         app:menu="@menu/navigation" />
 
     <Button
+        android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Get Date"
         android:background="@drawable/bg_btn"
+        android:text="Get Date"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calenderid" />
+        app:layout_constraintTop_toBottomOf="@+id/calenderid"
+        app:layout_constraintVertical_bias="0.511" />
 
 </android.support.constraint.ConstraintLayout>
