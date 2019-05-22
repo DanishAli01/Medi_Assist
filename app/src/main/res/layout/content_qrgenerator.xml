@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".com.example.danishali.assignment03.myapplication.QRGenerator.QR"
-    tools:showIn="@layout/activity_qrgeneratot">
+    tools:showIn="@layout/activity_qrgenerator">
 
 
     <ImageView
