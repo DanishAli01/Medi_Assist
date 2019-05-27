@@ -1,24 +1,29 @@
-package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Models;
+package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.PersonalProfile;
 
-import java.io.Serializable;
 
-public class PersonalProfile implements Serializable {
+public class PersonalProfile {
+
     @Override
     public String toString() {
-        return
-                "Name : " + Name +
-                "\nGender : " + gender +
-                "\nDateofbirth : " + dateofbirth +
-                "\nAddress : " + address +
-                "\nId : " + id +
-                "\nEircode : " + eircode +
-                "\nMobile : " + mobile +
-                "\nEmail : " + email +
-                "\nHome : " + home +
-                "\nBloodgroup : " + bloodgroup;
+        return "PersonalProfile{" +
+                ", eircode='" + eircode + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", email='" + email + '\'' +
+                ", home='" + home + '\'' +
+                ", bloodgroup='" + bloodgroup + '\'' +
+                ", Name='" + Name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", id='" + id + '\'' +
+                ", dateofbirth='" + dateofbirth + '\'' +
+                '}';
+    }
 
+    public String getId() {
+        return id;
+    }
 
-
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setName(String name) {
@@ -33,9 +38,6 @@ public class PersonalProfile implements Serializable {
         this.dateofbirth = dateofbirth;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public void setEircode(String eircode) {
         this.eircode = eircode;
@@ -69,9 +71,6 @@ public class PersonalProfile implements Serializable {
         return dateofbirth;
     }
 
-    public String getAddress() {
-        return address;
-    }
 
     public String getEircode() {
         return eircode;
@@ -93,23 +92,15 @@ public class PersonalProfile implements Serializable {
         return bloodgroup;
     }
 
-    public void setId(String id) {
-        this.id = id;
+
+    public String getToken() {
+        return token;
     }
 
-    public String getId() {
-        return id;
+    public void setToken(String token) {
+        this.token = token;
     }
 
-    public void setTokengiven(String tokengiven) {
-        this.tokengiven = tokengiven;
-    }
-
-    public String getTokengiven() {
-        return tokengiven;
-    }
-
-    private String id;
     private String eircode;
     private String mobile;
     private String email;
@@ -118,7 +109,9 @@ public class PersonalProfile implements Serializable {
     private String Name;
     private String gender;
     private String dateofbirth;
-    private String address;
-    private String tokengiven;
+    private String id;
+    private String token;
+
 
 }
+

@@ -9,17 +9,6 @@
     android:orientation="vertical"
     tools:context=".com.example.danishali.assignment03.myapplication.Bookingsystem.Booking">
 
-    <!--<TextView-->
-        <!--android:id="@+id/headerofcalender"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/title_calender"-->
-        <!--android:textAlignment="center"-->
-        <!--android:textColor="#ffffff"-->
-        <!--android:textSize="23sp"-->
-        <!--tools:ignore="MissingConstraints"-->
-        <!--tools:layout_editor_absoluteX="110dp"-->
-        <!--tools:layout_editor_absoluteY="155dp" />-->
 
     <CalendarView
         android:id="@+id/calenderid"

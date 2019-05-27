@@ -1,6 +1,7 @@
 package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Bookingsystem;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,8 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.danishali.assignment03.myapplication.R;
-import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.DashBoard.MainActivity;
-import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Mailer.Mail;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.GPList.GpList;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.TimePicker.TimePick;
 
 public class Booking extends AppCompatActivity {
 
@@ -56,6 +57,7 @@ public class Booking extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         Intent intent = getIntent();
+        Uri data = intent.getData();
 
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -74,11 +76,11 @@ public class Booking extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (datetext.equals(null)) {
+                if (datetext == null) {
                     Toast.makeText(getApplicationContext(), "Please Select Date First", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Intent myIntent = new Intent(Booking.this, Mail.class);
+                    Intent myIntent = new Intent(Booking.this, GpList.class);
                     Booking.this.startActivity(myIntent);
                 }
 

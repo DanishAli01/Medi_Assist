@@ -1,25 +1,28 @@
 package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts;
-//My Push & Commit Check
-import android.app.Activity;
+
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.DashBoard.MainActivity;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.example.danishali.assignment03.myapplication.R;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.DashBoard.MainActivity;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.Login;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.LoginLocalDAO;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.PersonalProfile.PersonalProfile;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.RestServices.ProfileRemoteDAO;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.RestServices.VolleyRequestHandler;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.SecurePassword.SecurePassword;
 
-import org.json.JSONObject;
-
-import java.io.Serializable;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -30,31 +33,34 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginbutton;
     private TextView signuppath;
     private ProfileRemoteDAO profileRemoteDAO;
+    private LoginLocalDAO loginLocalDAO;
+    private VolleyRequestHandler volleyRequestHandler;
+    private String loginendpointcheck;
+    private SecurePassword securePassword;
+    private String afterLogingetprofile_endpoint;
+    private PersonalProfile personalProfile;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_main);
-        edittextview = (EditText) findViewById(R.id.input_email);
-        passwordtextview = (EditText) findViewById(R.id.input_password);
+
+        edittextview = (EditText) findViewById(R.id.input_login_email);
+        passwordtextview = (EditText) findViewById(R.id.input_login_password);
         loginbutton = (Button) findViewById(R.id.btn_login);
         signuppath = (TextView) findViewById(R.id.link_signup);
-
         profileRemoteDAO = new ProfileRemoteDAO(this);
+        loginLocalDAO = new LoginLocalDAO(this);
+        volleyRequestHandler = new VolleyRequestHandler(this);
+        loginendpointcheck = this.getResources().getString(R.string.logincheck);
+        afterLogingetprofile_endpoint = this.getResources().getString(R.string.afterLogingetprofile_endpoint);
+        personalProfile = new PersonalProfile();
+
 
 
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                try {
-                   profileRemoteDAO.profileRequestHandler();
-                    Toast.makeText(LoginActivity.this, "Got it :", Toast.LENGTH_LONG).show();
-//                    Toast.makeText(LoginActivity.this, "Got it :"+ SecurePassword.FOLD("Dansiha"), Toast.LENGTH_LONG).show();
-                   // Toast.makeText(LoginActivity.this, "Got it :"+SecurePassword.UNFOLD(""+SecurePassword.FOLD("Dansiha")), Toast.LENGTH_LONG).show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
 
                login();
             }
@@ -76,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(!validate()){
             onLoginFailed();
+            Log.e("Invaild Login","Invaild Login");
             return;
         }
 
@@ -86,14 +93,37 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
+        volleyRequestHandler.stringrequest(loginendpointcheck+edittextview.getText().toString(),new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
 
-        String emial = edittextview.getText().toString();
-        String password = passwordtextview.getText().toString();
+                Log.d("there","work");
+
+
+                try {
+
+                    if( passwordtextview.getText().toString().equals(securePassword.UNFOLD(response))){
+                        onLoginSuccess();
+                    }
+
+
+                    else onLoginFailed();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        },edl);
+
 
         new android.os.Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                onLoginSuccess();
+
+
+
                 progressDialog.dismiss();
             }
         }, 3000);
@@ -140,9 +170,26 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginSuccess() {
+
+
         Intent mainswitch = new Intent(LoginActivity.this, MainActivity.class);
-        mainswitch.putExtra("Profile", (Serializable) profileRemoteDAO.getProfile());
+        mainswitch.putExtra("Profile",edittextview.getText().toString());
         LoginActivity.this.startActivity(mainswitch);
         loginbutton.setEnabled(true);
+
     }
+
+
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+Response.ErrorListener edl = new Response.ErrorListener() {
+    @Override
+    public void onErrorResponse(VolleyError error) {
+
+    }
+};
+
 }

@@ -15,21 +15,43 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".com.example.danishali.assignment03.myapplication.GraphMaking.graphplot"
+            android:label="@string/title_activity_graphplot"
+            android:theme="@style/AppTheme.NoActionBar">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity
+            android:name=".com.example.danishali.assignment03.myapplication.Login.LoginToken"
+            android:label="@string/title_activity_login_token"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".com.example.danishali.assignment03.myapplication.GPList.GpList"
+            android:label="@string/title_activity_gp_list" />
+        <activity
+            android:name=".com.example.danishali.assignment03.myapplication.TimePicker.TimePick"
+            android:label="@string/title_activity_time_pick" />
+        <activity
+            android:name=".com.example.danishali.assignment03.myapplication.ChangeEmail.ConfrimEmail"
+            android:label="@string/title_activity_confrim_email" />
+        <activity
             android:name=".com.example.danishali.assignment03.myapplication.QRGenerator.QR"
             android:label="@string/title_activity_qrgeneratot"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".com.example.danishali.assignment03.myapplication.Mailer.Mail"
             android:label="@string/title_activity_mailer_acticity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".com.example.danishali.assignment03.myapplication.Bookingsystem.Booking"
-            android:label="@string/title_activity_customcalender"></activity>
+            android:label="@string/title_activity_customcalender" />
         <activity
             android:name=".com.example.danishali.assignment03.myapplication.DashBoard.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".com.example.danishali.assignment03.myapplication.Accounts.LoginActivity"
             android:theme="@style/AppTheme">
@@ -43,6 +65,7 @@
         <activity
             android:name=".com.example.danishali.assignment03.myapplication.Accounts.SignupActvity"
             android:theme="@style/AppTheme" />
+
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="ocr" />

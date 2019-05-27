@@ -5,11 +5,14 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.StrictMode;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.danishali.assignment03.myapplication.R;
 
@@ -85,10 +88,28 @@ public class VolleyRequestHandler {
         requestQueue.add(request);
     }
 
-    public void postRequest(String endpoint, JSONObject jsonBody, Response.Listener<JSONObject> listenerResponse, Response.ErrorListener listenerError){
+    public void postRequest(String endpoint, JSONObject jsonBody, Response.Listener listenerResponse, Response.ErrorListener listenerError){
         final String url = domain + endpoint;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonBody, listenerResponse, listenerError);
         requestQueue.add(request);
     }
+
+    public void patchRequest(String endpoint,Response.Listener<String> listenerResponse, Response.ErrorListener listenerError ){
+        final String url = domain + endpoint;
+        StringRequest request = new StringRequest(Request.Method.PATCH,url,listenerResponse,listenerError);
+        requestQueue.add(request);
+
+    }
+
+
+    public void stringrequest(String endpoint,Response.Listener<String> idl,Response.ErrorListener edl){
+
+        final String url = domain + endpoint;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,idl,edl);
+        requestQueue.add(stringRequest);
+    }
+
+
+
 }
