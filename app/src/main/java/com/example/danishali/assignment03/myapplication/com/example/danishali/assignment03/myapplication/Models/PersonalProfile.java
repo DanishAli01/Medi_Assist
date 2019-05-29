@@ -1,4 +1,4 @@
-package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.PersonalProfile;
+package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Models;
 
 
 public class PersonalProfile {

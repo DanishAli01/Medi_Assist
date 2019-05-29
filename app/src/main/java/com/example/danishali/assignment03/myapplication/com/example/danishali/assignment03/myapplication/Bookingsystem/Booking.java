@@ -14,7 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.danishali.assignment03.myapplication.R;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.DashBoard.MainActivity;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.GPList.GpList;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.QRGenerator.QR;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.TimePicker.TimePick;
 
 public class Booking extends AppCompatActivity {
@@ -65,7 +67,24 @@ public class Booking extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
 
                 datetext = (i1 + 1) + "/" + i2 + "/" + i;
-                //Toast.makeText(getApplicationContext(), date,Toast.LENGTH_SHORT).show();
+//                qr.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//
+//                        Intent mainswitch = new Intent(Booking.this, QR.class);
+//                        mainswitch.putExtra("ID",personalProfile.getId());
+//                        MainActivity.this.startActivity(mainswitch);
+//                        onStop();
+//
+//                    }
+//                });
+
+
+
+                        Intent mainswitch = new Intent(Booking.this, TimePick.class);
+                       // mainswitch.putExtra("ID",personalProfile.getId());
+                        Booking.this.startActivity(mainswitch);
+                        onStop();
 
 
             }

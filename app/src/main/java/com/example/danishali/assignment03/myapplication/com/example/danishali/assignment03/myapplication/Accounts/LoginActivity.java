@@ -3,7 +3,6 @@ package com.example.danishali.assignment03.myapplication.com.example.danishali.a
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,9 +15,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.danishali.assignment03.myapplication.R;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.DashBoard.MainActivity;
-import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.Login;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.LoginLocalDAO;
-import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.PersonalProfile.PersonalProfile;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Models.PersonalProfile;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.RestServices.ProfileRemoteDAO;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.RestServices.VolleyRequestHandler;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.SecurePassword.SecurePassword;
@@ -94,11 +92,9 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.show();
 
         volleyRequestHandler.stringrequest(loginendpointcheck+edittextview.getText().toString(),new Response.Listener<String>() {
+
             @Override
             public void onResponse(String response) {
-
-                Log.d("there","work");
-
 
                 try {
 
@@ -111,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                    edittextview.setError(""+e);
                 }
 
 
@@ -189,6 +186,7 @@ Response.ErrorListener edl = new Response.ErrorListener() {
     @Override
     public void onErrorResponse(VolleyError error) {
 
+        Log.e("Volley Error ",""+error);
     }
 };
 

@@ -8,7 +8,7 @@
         android:id="@+id/action_heart"
         android:orderInCategory="300"
         android:title="User"
-        android:icon="@drawable/heart_main"
+        android:icon="@drawable/update_vital"
         android:iconTint="@color/colorWhite"
         app:showAsAction="ifRoom"></item>
 

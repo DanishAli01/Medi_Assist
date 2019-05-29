@@ -8,10 +8,29 @@
     tools:context=".com.example.danishali.assignment03.myapplication.QRGenerator.QR"
     tools:showIn="@layout/activity_qrgenerator">
 
+    <TextView
+        android:id="@+id/qrmessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="8dp"
+        android:text="Access Denied: Please Try Again"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.446"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textAlignment="center"/>
 
     <ImageView
         android:id="@+id/qr"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="514dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/qrmessage"
+        tools:layout_editor_absoluteX="0dp" />
 
 </android.support.constraint.ConstraintLayout>

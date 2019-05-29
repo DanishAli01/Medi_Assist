@@ -5,18 +5,22 @@ public class Login {
     private String id;
     private String username;
     private String token;
+    private String email;
 
-    /**
-     * @param id
-     * @param username
-     * @param token
-     *
-     * Constructor
-     */
-    public Login(String id, String username, String token) {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+    public Login(String id, String username, String token,String email) {
         this.id = id;
         this.username = username;
         this.token = token;
+        this.email = email;
     }
 
     /**
@@ -96,5 +100,15 @@ public class Login {
         hashCode = 31 * hashCode + (username != null ? username.hashCode() : 0);
         hashCode = 31 * hashCode + (token != null ? token.hashCode() : 0);
         return hashCode;
+    }
+
+    @Override
+    public String toString() {
+        return "Login{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", token='" + token + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

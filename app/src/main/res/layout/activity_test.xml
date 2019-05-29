@@ -7,25 +7,11 @@
     tools:context=".com.example.danishali.assignment03.myapplication.Adapters.test">
 
 
-    <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:openDrawer="start">
 
-        <include
+    <include
             layout="@layout/app_bar_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
-
-
-    </android.support.v4.widget.DrawerLayout>
-
-
 
     <include layout="@layout/content_test" />
 
@@ -57,7 +43,7 @@
             />
 
         <ImageView
-            android:id="@+id/item2"
+            android:id="@+id/bookings"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

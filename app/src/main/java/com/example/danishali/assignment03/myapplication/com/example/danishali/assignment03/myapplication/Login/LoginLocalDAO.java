@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * @author Gurcharn Singh Sikka
+ *
  * @version 1.0
  *
  * Class to access data from databse
@@ -19,13 +19,13 @@ public class LoginLocalDAO extends SQLiteOpenHelper {
     private final String LOGIN_COLUMN_ID = "id";
     private final String LOGIN_COLUMN_USERNAME = "username";
     private final String LOGIN_COLUMN_TOKEN = "token";
-    private final String LOGIN_COLUMN_DATE = "date";
+    private final String LOGIN_COLUMN_EMAIL = "email";
 
     private final String LOGIN_CREATE_TABLE = "create table " + TRAVELLER_TABLE_NAME +"(" +
                                                 LOGIN_COLUMN_ID + " text primary key, " +
                                                 LOGIN_COLUMN_USERNAME + " text, " +
                                                 LOGIN_COLUMN_TOKEN + " text, " +
-                                                LOGIN_COLUMN_DATE + " text" +
+            LOGIN_COLUMN_EMAIL + " text" +
                                                 ")";
     private final String LOGIN_DROP_TABLE = "drop table " + TRAVELLER_TABLE_NAME;
 
@@ -72,21 +72,23 @@ public class LoginLocalDAO extends SQLiteOpenHelper {
      */
     public boolean insertLogin(Login login) {
         createTableIfNotExist();
-        Login loginExists = getLogin();
+//        Login loginExists = getLogin();
 
         try{
-            if(loginExists == null){
+//            if(loginExists == null){
                 contentValues.put(LOGIN_COLUMN_ID, login.getId());
                 contentValues.put(LOGIN_COLUMN_USERNAME, login.getUsername());
                 contentValues.put(LOGIN_COLUMN_TOKEN, login.getToken());
+                contentValues.put(LOGIN_COLUMN_EMAIL, login.getEmail());
                 getWritableDB.insert(TRAVELLER_TABLE_NAME, null, contentValues);
-            } else {
-                resetTable();
-                contentValues.put(LOGIN_COLUMN_ID, login.getId());
-                contentValues.put(LOGIN_COLUMN_USERNAME, login.getUsername());
-                contentValues.put(LOGIN_COLUMN_TOKEN, login.getToken());
-                getWritableDB.insert(TRAVELLER_TABLE_NAME, null, contentValues);
-            }
+//            } else {
+//                resetTable();
+//                contentValues.put(LOGIN_COLUMN_ID, login.getId());
+//                contentValues.put(LOGIN_COLUMN_USERNAME, login.getUsername());
+//                contentValues.put(LOGIN_COLUMN_TOKEN, login.getToken());
+//                contentValues.put(LOGIN_COLUMN_EMAIL, login.getEmail());
+//                getWritableDB.insert(TRAVELLER_TABLE_NAME, null, contentValues);
+//            }
             return true;
         } catch (Exception e){
             e.printStackTrace();
@@ -104,7 +106,7 @@ public class LoginLocalDAO extends SQLiteOpenHelper {
 
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            login = new Login(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+            login = new Login(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
         }
 
         return login;

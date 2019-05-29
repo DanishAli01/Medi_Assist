@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".com.example.danishali.assignment03.myapplication.DashBoard.MainActivity">
+    tools:context=".com.example.danishali.assignment03.myapplication.Vitals.Vitals">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
 
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar2"
+            android:id="@+id/toolbar_vitals"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             style="@style/HeaderBar"
@@ -24,6 +24,13 @@
             />
 
     </android.support.design.widget.AppBarLayout>
+
+
+
+
+
+
+    <include layout="@layout/content_vitals" />
 
 
 
