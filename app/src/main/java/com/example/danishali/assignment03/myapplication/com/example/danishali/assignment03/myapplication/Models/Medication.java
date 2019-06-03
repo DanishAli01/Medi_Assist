@@ -48,4 +48,15 @@ public class Medication {
     public void setTreatment_for(String treatment_for) {
         this.treatment_for = treatment_for;
     }
+
+    @Override
+    public String toString() {
+        return "Medication{" +
+                "date='" + date + '\'' +
+                ", name='" + name + '\'' +
+                ", prescribed_by='" + prescribed_by + '\'' +
+                ", treatment_for='" + treatment_for + '\'' +
+                ", map='" + map + '\'' +
+                '}';
+    }
 }

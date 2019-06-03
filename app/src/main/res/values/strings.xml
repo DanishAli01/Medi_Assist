@@ -7,16 +7,18 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <!--<string name="domain">http://192.168.0.39:8083/</string>-->
-    <string name="domain"> http://7e316fe4.ngrok.io/</string>
+    <string name="domain">http://085618f4.ngrok.io/</string>
     <string name="endpoint">profile</string>
     <string name="vitalstopendpoint">/vitals/top/get/</string>
-    <string name="addprofileendpoint">profile/add</string>
+    <string name="addprofileendpoint">profile/add/new</string>
     <string name="getidendpoint">profile/mobile</string>
     <string name="idpass">profile/medicalhistroy/addbyid?map=</string>
     <string name="QR_messageOne">Please note:\n QR will reset itself in</string>
     <string name="QR_messageTwo">sec(s).</string>
     <string name="medicationpass">profile/medication/addbyid?map=</string>
     <string name="logincheck">profile/find/byemail/</string>
+    <string name="getallmeds">profile/medication/getall/</string>
+    <string name="gellallill">profile/illness/getall/</string>
     <string name="afterLogingetprofile_endpoint">profile/find/byemailafterlogin/</string>
     <string name="endpointemailchange">profile/email/</string>
     <string name="title_activity_bottom_navigation">BottomNavigation</string>
@@ -39,4 +41,8 @@
     <string name="title_activity_test">test</string>
     <string name="title_activity_graphplot">graphplot</string>
     <string name="title_activity_vitals">Vitals</string>
+    <string name="title_activity_medications">medications</string>
+    <string name="title_activity_medication_list">MedicationList</string>
+    <string name="title_activity_medication_listview_activity">Medications</string>
+    <string name="title_activity_illness">illness</string>
 </resources>

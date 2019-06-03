@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".com.example.danishali.assignment03.myapplication.TimePicker.TimePick">
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        tools:ignore="MissingConstraints"/>
+    tools:context=".com.example.danishali.assignment03.myapplication.Medications.medication_listview_activity">
 
     <include
-        android:id="@+id/include"
-        layout="@layout/content_time"
-        tools:layout_editor_absoluteX="58dp"
-        tools:layout_editor_absoluteY="0dp" />
+        layout="@layout/app_bar_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
+    <include
+        layout="@layout/content_medication_listview_activity"
+        android:layout_width="match_parent"
+        android:layout_height="640dp"
+        app:layout_anchor="@+id/tapBarMenuMedi"
+        app:layout_anchorGravity="bottom|center" />
 
     <com.michaldrabik.tapbarmenulib.TapBarMenu
         android:id="@+id/tapBarMenuMedi"
@@ -25,12 +24,10 @@
         android:layout_height="56dp"
         android:layout_gravity="bottom"
         android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/include"
-
-        app:tbm_buttonMarginRight="20dp"
         app:tbm_buttonPosition="right"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
+        app:tbm_buttonMarginRight="20dp"
+
+        >
 
 
 
@@ -41,27 +38,29 @@
             android:layout_weight="1"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            app:srcCompat="@drawable/booking"
             android:tint="@color/colorWhite"
-            app:srcCompat="@drawable/booking" />
-
+            />
         <Space
             android:layout_width="36dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
 
         <ImageView
             android:id="@+id/qr"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:clickable="true"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            app:srcCompat="@drawable/qrcode"
             android:tint="@color/colorWhite"
-            app:srcCompat="@drawable/qrcode" />
-
+            android:clickable="true"
+            />
         <Space
             android:layout_width="36dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
         <ImageView
             android:id="@+id/item1"
             android:layout_width="0dp"
@@ -69,18 +68,21 @@
             android:layout_weight="1"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            app:srcCompat="@drawable/logout"
             android:tint="@color/colorWhite"
-            app:srcCompat="@drawable/logout" />
+            />
 
         <Space
             android:layout_width="36dp"
-            android:layout_height="match_parent" />
-
+            android:layout_height="match_parent"
+            />
         <Space
             android:layout_width="36dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
+
 
 
     </com.michaldrabik.tapbarmenulib.TapBarMenu>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

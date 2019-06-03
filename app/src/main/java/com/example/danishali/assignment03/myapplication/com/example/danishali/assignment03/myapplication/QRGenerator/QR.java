@@ -24,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.example.danishali.assignment03.myapplication.R;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts.LoginActivity;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts.SignupActvity;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Bookingsystem.Booking;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.DashBoard.MainActivity;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.Login;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.LoginLocalDAO;
@@ -34,6 +35,7 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+import com.michaldrabik.tapbarmenulib.TapBarMenu;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,6 +55,10 @@ public class QR extends AppCompatActivity {
     private LoginLocalDAO loginLocalDAO;
     private VolleyRequestHandler volleyRequestHandler;
     private PersonalProfile personalProfile;
+    private String nigrokdomain;
+    private TapBarMenu tapBarMenu;
+    private ImageView qr;
+    private ImageView bookings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +66,9 @@ public class QR extends AppCompatActivity {
         volleyRequestHandler = new VolleyRequestHandler(this);
         personalProfile = new PersonalProfile();
         loginLocalDAO = new LoginLocalDAO(this);
+        nigrokdomain = this.getResources().getString(R.string.domain);
+
+
         //////////////////////////////////////
         volleyRequestHandler.getRequest("profile/find/"+loginLocalDAO.getLogin().getId(),new Response.Listener<JSONObject>() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -117,7 +126,11 @@ public class QR extends AppCompatActivity {
         setSupportActionBar(toolbar);
         qrmessage = (TextView) findViewById(R.id.qrmessage);
         loginLocalDAO = new LoginLocalDAO(this);
+        qr = (ImageView) findViewById(R.id.qr);
+        bookings = (ImageView) findViewById(R.id.bookings);
+        tapBarMenu = (TapBarMenu) findViewById(R.id.tapBarMenuqr);
         Intent intent = getIntent();
+
         final AlertDialog.Builder profile_dialogue = new AlertDialog.Builder(QR.this);
         View profileview = getLayoutInflater().inflate(R.layout.qr_pinpad,null);
         final EditText pin_pass = profileview.findViewById(R.id.pin_pass);
@@ -127,7 +140,7 @@ public class QR extends AppCompatActivity {
                 Log.d("QRCHECK", "onClick: "+pin_pass.getText().toString());
                 if(pin_pass.getText().toString().equals("1234")) {
                     ImageView qr = (ImageView) findViewById(R.id.qr);
-                    String text = "http://7e316fe4.ngrok.io/qrtoken?token="+loginLocalDAO.getLogin().getToken();// Whatever you need to encode in the QR code
+                    String text = nigrokdomain+"qrtoken?token="+loginLocalDAO.getLogin().getToken();// Whatever you need to encode in the QR code
                     MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
                     try {
                         BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE, 200, 200);
@@ -177,6 +190,39 @@ public class QR extends AppCompatActivity {
         });
         AlertDialog dialog = profile_dialogue.create();
         dialog.show();
+
+        qr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent mainswitch = new Intent(QR.this, QR.class);
+                mainswitch.putExtra("ID",personalProfile.getId());
+                QR.this.startActivity(mainswitch);
+                onStop();
+
+            }
+        });
+
+        bookings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent mainswitch = new Intent(QR.this, Booking.class);
+                mainswitch.putExtra("ID",personalProfile.getId());
+                QR.this.startActivity(mainswitch);
+                onStop();
+
+            }
+        });
+
+
+        tapBarMenu.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                tapBarMenu.toggle();
+            }
+        });
+
+
 
     }
 

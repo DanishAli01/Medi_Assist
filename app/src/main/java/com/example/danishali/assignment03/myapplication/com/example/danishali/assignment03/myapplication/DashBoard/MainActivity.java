@@ -1,38 +1,42 @@
 package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.DashBoard;
 
-        import android.content.Intent;
-        import android.os.Build;
-        import android.os.Bundle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.support.v7.widget.RecyclerView;
-        import android.support.v7.widget.Toolbar;
-        import android.util.Log;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.ImageView;
-        import com.android.volley.Response;
-        import com.android.volley.VolleyError;
-        import com.example.danishali.assignment03.myapplication.R;
-        import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Adapters.RecyclerViewAdapter;
-        import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Bookingsystem.Booking;
-        import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.Login;
-        import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.LoginLocalDAO;
-        import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Models.PersonalProfile;
-        import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.QRGenerator.QR;
-        import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.RestServices.VolleyRequestHandler;
-        import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Vitals.Vitals;
-        import com.michaldrabik.tapbarmenulib.TapBarMenu;
-        import org.json.JSONException;
-        import org.json.JSONObject;
-        import java.text.ParseException;
-        import java.text.SimpleDateFormat;
-        import java.time.LocalDate;
-        import java.time.Period;
-        import java.util.ArrayList;
-        import java.util.Calendar;
-        import java.util.Date;
-        import androidx.annotation.RequiresApi;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.example.danishali.assignment03.myapplication.R;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts.LoginActivity;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Adapters.RecyclerViewAdapter;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Bookingsystem.Booking;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.GraphMaking.graphplot;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Illness.illness;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.Login;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.LoginLocalDAO;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Models.PersonalProfile;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.QRGenerator.QR;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.RestServices.VolleyRequestHandler;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Vitals.Vitals;
+import com.michaldrabik.tapbarmenulib.TapBarMenu;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import androidx.annotation.RequiresApi;
 
 
 
@@ -46,10 +50,12 @@ public class MainActivity extends AppCompatActivity
     private LoginLocalDAO loginLocalDAO;
     private Login login;
     private ImageView bookings;
+    private ImageView logout;
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
     private ArrayList<String> arrayList = new ArrayList<>();
     private TapBarMenu tapBarMenu;
+    private float x1,y1,x2,y2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +65,7 @@ public class MainActivity extends AppCompatActivity
         tapBarMenu = (TapBarMenu) findViewById(R.id.tapBarMenu);
         qr = (ImageView) findViewById(R.id.qr);
         bookings = (ImageView) findViewById(R.id.bookings);
+        logout = (ImageView)findViewById(R.id.log_out);
         afterLogingetprofile_endpoint = this.getResources().getString(R.string.afterLogingetprofile_endpoint);
         personalProfile = new PersonalProfile();
         volleyRequestHandler = new VolleyRequestHandler(this);
@@ -144,7 +151,7 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-        qr.setOnClickListener(new View.OnClickListener() {
+              qr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -162,6 +169,18 @@ public class MainActivity extends AppCompatActivity
 
                 Intent mainswitch = new Intent(MainActivity.this, Booking.class);
                 mainswitch.putExtra("ID",personalProfile.getId());
+                MainActivity.this.startActivity(mainswitch);
+                onStop();
+
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent mainswitch = new Intent(MainActivity.this, LoginActivity.class);
+                loginLocalDAO.resetDb();
                 MainActivity.this.startActivity(mainswitch);
                 onStop();
 
@@ -209,6 +228,26 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onTouchEvent(MotionEvent touchEvent){
+        switch(touchEvent.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                x1 = touchEvent.getX();
+                y1 = touchEvent.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = touchEvent.getX();
+                y2 = touchEvent.getY();
+
+                if(x1 >  x2){
+                    Log.i("Swiped","S");
+                    Intent i = new Intent(MainActivity.this, illness.class);
+                    startActivity(i);
+                }
+                break;
+        }
+        return false;
     }
 
 

@@ -6,22 +6,27 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.StrictMode;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.danishali.assignment03.myapplication.R;
 
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class VolleyRequestHandler {
 
@@ -108,6 +113,13 @@ public class VolleyRequestHandler {
         final String url = domain + endpoint;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,idl,edl);
         requestQueue.add(stringRequest);
+    }
+
+    public void  JSONobjectHandler(String endpoint, Response.Listener<JSONArray> listenerResponse, Response.ErrorListener listenerError){
+        final String url = domain + endpoint;
+        JsonArrayRequest request = new JsonArrayRequest(url,listenerResponse ,listenerError );
+        requestQueue.add(request);
+
     }
 
 

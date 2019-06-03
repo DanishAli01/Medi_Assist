@@ -15,21 +15,53 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".com.example.danishali.assignment03.myapplication.Illness.illness"
+            android:label="@string/title_activity_illness"
+            android:theme="@style/AppTheme.NoActionBar">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity
+            android:name=".com.example.danishali.assignment03.myapplication.Medications.medication_listview_activity"
+            android:label="@string/title_activity_medication_listview_activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
             android:name=".com.example.danishali.assignment03.myapplication.Vitals.Vitals"
             android:label="@string/title_activity_vitals"
             android:theme="@style/AppTheme.NoActionBar">
-             <!--<intent-filter>-->
-             <!--<action android:name="android.intent.action.MAIN" />-->
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
 
-             <!--<category android:name="android.intent.category.LAUNCHER" />-->
-             <!--</intent-filter>-->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+
+            <intent-filter android:label="V">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data
+                    android:host="www.example.com"
+                    android:pathPrefix="/gizmos"
+                    android:scheme="http" />
+                <!-- note that the leading "/" is required for pathPrefix -->
+                <!-- Accepts URIs that begin with "example://gizmos” -->
+                <data
+                    android:host="gizmos"
+                    android:scheme="example" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".com.example.danishali.assignment03.myapplication.GraphMaking.graphplot"
             android:label="@string/title_activity_graphplot"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".com.example.danishali.assignment03.myapplication.Login.LoginToken"
             android:label="@string/title_activity_login_token"
@@ -61,11 +93,13 @@
         <activity
             android:name=".com.example.danishali.assignment03.myapplication.Accounts.LoginActivity"
             android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+
+
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
         <activity android:name=".com.example.danishali.assignment03.myapplication.ImageReader.ImageReader" />
         <activity

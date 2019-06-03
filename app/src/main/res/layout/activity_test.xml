@@ -26,21 +26,6 @@
 
         >
 
-        <ImageView
-            android:id="@+id/item1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            app:srcCompat="@drawable/profile"
-            android:tint="@color/colorWhite"
-            />
-
-        <Space
-            android:layout_width="36dp"
-            android:layout_height="match_parent"
-            />
 
         <ImageView
             android:id="@+id/bookings"
@@ -68,6 +53,22 @@
             android:tint="@color/colorWhite"
             android:clickable="true"
             />
+        <Space
+            android:layout_width="36dp"
+            android:layout_height="match_parent"
+            />
+
+        <ImageView
+            android:id="@+id/log_out"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:srcCompat="@drawable/logout"
+            android:tint="@color/colorWhite"
+            />
+
         <Space
             android:layout_width="36dp"
             android:layout_height="match_parent"

@@ -101,6 +101,14 @@ public class PersonalProfile {
         this.token = token;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     private String eircode;
     private String mobile;
     private String email;
@@ -111,6 +119,7 @@ public class PersonalProfile {
     private String dateofbirth;
     private String id;
     private String token;
+    private String password;
 
 
 }

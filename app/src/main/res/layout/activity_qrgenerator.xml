@@ -23,12 +23,71 @@
 
     <include layout="@layout/content_qrgenerator" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+    <com.michaldrabik.tapbarmenulib.TapBarMenu
+        android:id="@+id/tapBarMenuqr"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="24dp"
+        app:tbm_buttonPosition="right"
+        app:tbm_buttonMarginRight="20dp"
+
+        >
+
+
+
+        <ImageView
+            android:id="@+id/bookings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:srcCompat="@drawable/booking"
+            android:tint="@color/colorWhite"
+            />
+        <Space
+            android:layout_width="36dp"
+            android:layout_height="match_parent"
+            />
+
+        <ImageView
+            android:id="@+id/qr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:srcCompat="@drawable/qrcode"
+            android:tint="@color/colorWhite"
+            android:clickable="true"
+            />
+        <Space
+            android:layout_width="36dp"
+            android:layout_height="match_parent"
+            />
+        <ImageView
+            android:id="@+id/item1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:srcCompat="@drawable/logout"
+            android:tint="@color/colorWhite"
+            />
+
+        <Space
+            android:layout_width="36dp"
+            android:layout_height="match_parent"
+            />
+        <Space
+            android:layout_width="36dp"
+            android:layout_height="match_parent"
+            />
+
+
+
+    </com.michaldrabik.tapbarmenulib.TapBarMenu>
 
 </android.support.design.widget.CoordinatorLayout>
