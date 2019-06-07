@@ -5,10 +5,8 @@
 
     <SurfaceView
         android:id="@+id/surfaceview_medicalcard"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        />
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
     <TextView
@@ -19,5 +17,20 @@
         android:text="No Text"
         android:textSize="29sp"
         android:textColor="@color/colorPrimaryDark"/>
+
+    <Button
+        android:id="@+id/btn_scan_qr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="277dp"
+        android:layout_marginLeft="-135dp"
+        android:layout_marginTop="615dp"
+        android:layout_marginBottom="68dp"
+        android:layout_toRightOf="@id/textview_medicalcard"
+        android:text="Done"
+        android:textSize="15dp" />
 
 </RelativeLayout>

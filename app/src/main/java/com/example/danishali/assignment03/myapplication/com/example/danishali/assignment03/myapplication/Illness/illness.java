@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.danishali.assignment03.myapplication.R;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts.LoginActivity;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Adapters.RecyclerViewAdapter;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Bookingsystem.Booking;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.DashBoard.MainActivity;
@@ -48,6 +49,7 @@ public class illness extends AppCompatActivity {
     private LoginLocalDAO loginLocalDAO;
     private String gellallill;
     private float x1,x2,y1,y2;
+    private ImageView logout;
 
 
     @Override
@@ -97,6 +99,19 @@ public class illness extends AppCompatActivity {
 
             }
         });
+        logout = (ImageView)findViewById(R.id.log_out);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent mainswitch = new Intent(illness.this, LoginActivity.class);
+                loginLocalDAO.resetDb();
+                illness.this.startActivity(mainswitch);
+                onStop();
+
+            }
+        });
+
 
         setSupportActionBar(toolbar);
 

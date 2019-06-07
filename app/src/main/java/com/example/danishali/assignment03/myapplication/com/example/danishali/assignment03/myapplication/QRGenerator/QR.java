@@ -1,6 +1,6 @@
 package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.QRGenerator;
 
-import android.app.AlertDialog;
+import  android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;

@@ -1,8 +1,14 @@
 package com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.DashBoard;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -11,14 +17,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.danishali.assignment03.myapplication.R;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts.LoginActivity;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts.SignupActvity;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Adapters.RecyclerViewAdapter;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Bookingsystem.Booking;
-import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.GraphMaking.graphplot;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Illness.illness;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.Login;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.LoginLocalDAO;
@@ -26,9 +35,17 @@ import com.example.danishali.assignment03.myapplication.com.example.danishali.as
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.QRGenerator.QR;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.RestServices.VolleyRequestHandler;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Vitals.Vitals;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.michaldrabik.tapbarmenulib.TapBarMenu;
+
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -36,11 +53,14 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
 import androidx.annotation.RequiresApi;
 
 
 
 public class MainActivity extends AppCompatActivity
+
+
 {
 
     private PersonalProfile personalProfile;
@@ -56,12 +76,11 @@ public class MainActivity extends AppCompatActivity
     private ArrayList<String> arrayList = new ArrayList<>();
     private TapBarMenu tapBarMenu;
     private float x1,y1,x2,y2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-
-
         tapBarMenu = (TapBarMenu) findViewById(R.id.tapBarMenu);
         qr = (ImageView) findViewById(R.id.qr);
         bookings = (ImageView) findViewById(R.id.bookings);
@@ -70,6 +89,7 @@ public class MainActivity extends AppCompatActivity
         personalProfile = new PersonalProfile();
         volleyRequestHandler = new VolleyRequestHandler(this);
         loginLocalDAO = new LoginLocalDAO(this);
+
 
 
         volleyRequestHandler.getRequest(afterLogingetprofile_endpoint+getIntent().getStringExtra("Profile"),new Response.Listener<JSONObject>() {
@@ -248,6 +268,41 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
         return false;
+    }
+
+    @Override
+    protected void onResume() {
+
+        final AlertDialog.Builder profile_dialogue = new AlertDialog.Builder(MainActivity.this);
+        final View profileview = getLayoutInflater().inflate(R.layout.fingerprint,null);
+
+        profile_dialogue.setPositiveButton("Access", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                final EditText pin_pass = profileview.findViewById(R.id.pin_check);
+                if(pin_pass.getText().toString().equals("1234")) {
+
+
+
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Access Denied", Toast.LENGTH_SHORT).show();
+                    Intent mainswitch = new Intent(MainActivity.this, LoginActivity.class);
+                    MainActivity.this.startActivity(mainswitch);
+
+                }
+
+            }
+        });
+
+
+
+        profile_dialogue.setView(profileview);
+        AlertDialog dialog = profile_dialogue.create();
+        dialog.show();
+
+
+
+        super.onResume();
     }
 
 

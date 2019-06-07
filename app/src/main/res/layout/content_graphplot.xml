@@ -8,6 +8,47 @@
     tools:context=".com.example.danishali.assignment03.myapplication.GraphMaking.graphplot"
     tools:showIn="@layout/activity_graphplot">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="8dp"
+        android:text="Respiratory Rate"
+        android:textColor="@color/colorRED"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graph"
+        app:layout_constraintVertical_bias="0.085"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="8dp"
+        android:text="Cholesterol"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graph"
+        app:layout_constraintVertical_bias="0.085"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="264dp"
+        android:layout_marginBottom="8dp"
+        android:text="Heart Rate"
+        android:textColor="@color/colorBLUE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graph"
+        app:layout_constraintVertical_bias="0.085"
+        tools:ignore="MissingConstraints" />
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"
         android:layout_width="379dp"
@@ -19,67 +60,6 @@
         tools:layout_editor_absoluteX="15dp"
         tools:ignore="MissingConstraints" />
 
-    <com.michaldrabik.tapbarmenulib.TapBarMenu
-        android:id="@+id/tapBarMenuMedi"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_gravity="bottom"
-        app:tbm_buttonMarginRight="20dp"
-        app:tbm_buttonPosition="right"
 
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="591dp">
-
-
-        <ImageView
-            android:id="@+id/bookings"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:tint="@color/colorWhite"
-            app:srcCompat="@drawable/booking" />
-
-        <Space
-            android:layout_width="36dp"
-            android:layout_height="match_parent" />
-
-        <ImageView
-            android:id="@+id/qr"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:tint="@color/colorWhite"
-            app:srcCompat="@drawable/qrcode" />
-
-        <Space
-            android:layout_width="36dp"
-            android:layout_height="match_parent" />
-
-        <ImageView
-            android:id="@+id/item1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:tint="@color/colorWhite"
-            app:srcCompat="@drawable/logout" />
-
-        <Space
-            android:layout_width="36dp"
-            android:layout_height="match_parent" />
-
-        <Space
-            android:layout_width="36dp"
-            android:layout_height="match_parent" />
-
-
-    </com.michaldrabik.tapbarmenulib.TapBarMenu>
 
 </android.support.constraint.ConstraintLayout>

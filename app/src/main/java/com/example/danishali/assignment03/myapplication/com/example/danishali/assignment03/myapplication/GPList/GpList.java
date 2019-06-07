@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.danishali.assignment03.myapplication.R;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts.LoginActivity;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Bookingsystem.Booking;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.LoginLocalDAO;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Mailer.Mail;
@@ -33,6 +34,8 @@ public class GpList extends AppCompatActivity {
     private LoginLocalDAO loginLocalDAO;
     private Intent intent;
     String time,date;
+
+    private ImageView logout;
 
 
     @Override
@@ -59,6 +62,7 @@ public class GpList extends AppCompatActivity {
                 Intent mainswitch = new Intent(GpList.this, Mail.class);
                 mainswitch.putExtra("time",time);
                 mainswitch.putExtra("date",date);
+                mainswitch.putExtra("gp",item);
                 GpList.this.startActivity(mainswitch);
                 onStop();
             }
@@ -94,6 +98,19 @@ public class GpList extends AppCompatActivity {
 
             }
         });
+        logout = (ImageView)findViewById(R.id.item1);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent mainswitch = new Intent(GpList.this, LoginActivity.class);
+                loginLocalDAO.resetDb();
+                GpList.this.startActivity(mainswitch);
+                onStop();
+
+            }
+        });
+
 
 
 

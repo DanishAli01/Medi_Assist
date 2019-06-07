@@ -10,7 +10,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,9 +20,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.danishali.assignment03.myapplication.R;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts.LoginActivity;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts.SignupActvity;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Bookingsystem.Booking;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.ChangeEmail.ConfrimEmail;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.DashBoard.MainActivity;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.GraphMaking.graphplot;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Illness.illness;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.Login;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.LoginLocalDAO;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Models.Vital;
@@ -30,6 +35,10 @@ import com.michaldrabik.tapbarmenulib.TapBarMenu;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import androidx.annotation.RequiresApi;
 import de.nitri.gauge.Gauge;
@@ -52,6 +61,8 @@ public class Vitals extends AppCompatActivity {
     private TapBarMenu tapBarMenu;
     private ImageView qr;
     private ImageView bookings;
+    private String updatevitalsendpoint;
+    private float x2,x1,y1,y2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +80,7 @@ public class Vitals extends AppCompatActivity {
         temprature = (TextView) findViewById(R.id.temperature);
         volleyRequestHandler = new VolleyRequestHandler(this);
         vitalstopendpoint = this.getResources().getString(R.string.vitalstopendpoint);
+        updatevitalsendpoint = this.getResources().getString(R.string.vitalupdateendpoint);
         vitals = new Vital();
         g = findViewById(R.id.gauge);
         g1 = findViewById(R.id.gauge1);
@@ -205,6 +217,66 @@ public class Vitals extends AppCompatActivity {
 //            AlertDialog dialog = profile_dialogue.create();
 //            dialog.show();
 
+
+            AlertDialog.Builder profile_dialogue = new AlertDialog.Builder(Vitals.this);
+            View profileview = getLayoutInflater().inflate(R.layout.vitalsupdate,null);
+
+            final EditText bloodpressure = profileview.findViewById(R.id.bloodpressure_up);
+            final EditText heartrate = profileview.findViewById(R.id.heart_rate_up);
+            final EditText heartbeat = profileview.findViewById(R.id.heart_beat_up);
+            final EditText cholesterol = profileview.findViewById(R.id.cholesterol_up);
+            final EditText weight = profileview.findViewById(R.id.weight_up);
+            final EditText temperature = profileview.findViewById(R.id.temperature_up);
+            final EditText respiratoryrate = profileview.findViewById(R.id.respiratory_rate_up);
+
+            profile_dialogue.setView(profileview);
+            profile_dialogue.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                    vitals.setTime(getCurrentTimeUsingDate());
+                    vitals.setVitalbloodpressure(bloodpressure.getText().toString());
+                    vitals.setVitalbodytemperature(temperature.getText().toString());
+                    vitals.setVitalcholesterol(cholesterol.getText().toString());
+                    vitals.setVitalheartbeat(heartbeat.getText().toString());
+                    vitals.setVitalheartrate(heartrate.getText().toString());
+                    vitals.setVitalrespiratoryrate(respiratoryrate.getText().toString());
+                    vitals.setVitalweightkgsbmi(weight.getText().toString());
+                    vitals.setMap(loginLocalDAO.getLogin().getId());
+
+                    Log.i("Updates Vitals",vitals.toString());
+
+                    JSONObject jsonbody= new JSONObject();
+
+                    try {
+                        jsonbody.put("vitalbloodpressure",vitals.getVitalbloodpressure());
+                        jsonbody.put("vitalbodytemperature",vitals.getVitalbodytemperature());
+                        jsonbody.put("vitalcholesterol",vitals.getVitalcholesterol());
+                        jsonbody.put("vitalheartbeat",vitals.getVitalheartbeat());
+                        jsonbody.put("vitalheartrate",vitals.getVitalheartrate());
+                        jsonbody.put("vitalrespiratoryrate",vitals.getVitalrespiratoryrate());
+                        jsonbody.put("vitalweightkgsbmi",vitals.getVitalweightkgsbmi());
+
+                    }
+                    catch (JSONException e){
+                        e.printStackTrace();
+                    }
+                    Log.i("Json",jsonbody.toString());
+
+
+                    if(volleyRequestHandler.hasActiveInternetConnection()){
+                        volleyRequestHandler.postRequest(updatevitalsendpoint+loginLocalDAO.getLogin().getId(),jsonbody, listenerResponse, listenerError);
+                        Intent intent = new Intent(Vitals.this,
+                                Vitals.class);
+
+                        startActivity(intent);
+                    } else{
+                        Log.i("No Connection","NO  INTERNET ACCESS");
+                    }
+                }
+            });
+            AlertDialog dialog = profile_dialogue.create();
+            dialog.show();
+
         }
 
 
@@ -277,5 +349,58 @@ public class Vitals extends AppCompatActivity {
         super.onStart();
     }
 
+
+
+    public String  getCurrentTimeUsingDate() {
+        Date date = new Date();
+        String strDateFormat = "hh:mm:ss a";
+        DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
+        String formattedDate= dateFormat.format(date);
+        return formattedDate;
+    }
+
+    Response.Listener<String> listenerResponse = new Response.Listener<String>() {
+        @Override
+        public void onResponse(String response) {
+            if(response == null)
+                Log.d("profile null","null response");
+            Log.d("Profile Response",response);
+        }
+    };
+
+    Response.ErrorListener listenerError = new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            try{
+                String errorRes = new String(error.networkResponse.data);
+                JSONObject result = new JSONObject(errorRes);
+                Log.e("Profile Error",result.toString());
+            } catch (JSONException e){
+                e.printStackTrace();
+            } catch (NullPointerException e){
+                e.printStackTrace();
+            }
+        }
+    };
+
+    public boolean onTouchEvent(MotionEvent touchEvent){
+        switch(touchEvent.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                x1 = touchEvent.getX();
+                y1 = touchEvent.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = touchEvent.getX();
+                y2 = touchEvent.getY();
+
+                if(x1 >  x2){
+                    Log.i("Swiped","S");
+                    Intent i = new Intent(Vitals.this, graphplot.class);
+                    startActivity(i);
+                }
+                break;
+        }
+        return false;
+    }
 
 }

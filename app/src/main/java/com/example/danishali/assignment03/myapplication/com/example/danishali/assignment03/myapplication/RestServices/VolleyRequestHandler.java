@@ -114,6 +114,12 @@ public class VolleyRequestHandler {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,idl,edl);
         requestQueue.add(stringRequest);
     }
+    public void stringrequestdelete(String endpoint,Response.Listener<String> idl,Response.ErrorListener edl){
+
+        final String url = domain + endpoint;
+        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, url,idl,edl);
+        requestQueue.add(stringRequest);
+    }
 
     public void  JSONobjectHandler(String endpoint, Response.Listener<JSONArray> listenerResponse, Response.ErrorListener listenerError){
         final String url = domain + endpoint;

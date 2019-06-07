@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.danishali.assignment03.myapplication.R;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts.LoginActivity;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Adapters.RecyclerViewAdapter;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Bookingsystem.Booking;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.DashBoard.MainActivity;
@@ -54,6 +55,7 @@ public class medication_listview_activity extends AppCompatActivity {
     private String gellallmeds;
     private ArrayList<Medication> mEntries;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +68,7 @@ public class medication_listview_activity extends AppCompatActivity {
         gellallmeds = this.getResources().getString(R.string.getallmeds);
         recyclerView = findViewById(R.id.recyclerViewmedicine);
         mEntries = new ArrayList<>();
+
 
 
         tapBarMenu.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +99,9 @@ public class medication_listview_activity extends AppCompatActivity {
 
             }
         });
+
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);

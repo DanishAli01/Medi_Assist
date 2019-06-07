@@ -5,22 +5,25 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.danishali.assignment03.myapplication.R;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.ImageReader.ImageReader;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.Login;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.LoginLocalDAO;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Models.MedicalHistory;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Models.Medication;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Models.PersonalProfile;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.RestServices.VolleyRequestHandler;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.SecurePassword.SecurePassword;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,6 +44,8 @@ public class SignupActvity extends AppCompatActivity {
     private  CardView medication;
     private String medicationpass;
     private Medication medics;
+    private Login login;
+    private LoginLocalDAO loginLocalDAO;
 
 
 
@@ -66,6 +71,8 @@ public class SignupActvity extends AppCompatActivity {
         jsonbody = new JSONObject();
         medication = (CardView)findViewById(R.id.medication);
         medics = new Medication();
+        loginLocalDAO = new LoginLocalDAO(this);
+        loginLocalDAO.resetDb();
 
 
 
@@ -117,12 +124,14 @@ public class SignupActvity extends AppCompatActivity {
                         catch (JSONException e){
                             e.printStackTrace();
                         }
-
+                        login = new Login(randomAlphaNumeric(9),personalProfile.getMobile(),randomAlphaNumeric(9),personalProfile.getEmail());
+                        loginLocalDAO.insertLogin(login);
 
                         Log.d("QRCHECK", "onClick: "+personalProfile.toString());
 
                         if(volleyRequestHandler.hasActiveInternetConnection()){
                             volleyRequestHandler.postRequest(endpoint,jsonbody, listenerResponse, listenerError);
+
                         } else{
                             Log.i("No Connection","NO  INTERNET ACCESS");
                         }
@@ -148,7 +157,7 @@ public class SignupActvity extends AppCompatActivity {
                 profile_dialogue.setView(profileview);
                 profile_dialogue.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                    volleyRequestHandler.stringrequest(idendpoint+"/"+personalProfile.getMobile(),new Response.Listener<String>() {
+                    volleyRequestHandler.stringrequest(idendpoint+loginLocalDAO.getLogin().getUsername(),new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 medicalHistory.setId(response);
@@ -204,7 +213,7 @@ public class SignupActvity extends AppCompatActivity {
                 profile_dialogue.setView(profileview);
                 profile_dialogue.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        volleyRequestHandler.stringrequest(idendpoint+"/"+personalProfile.getMobile(),new Response.Listener<String>() {
+                        volleyRequestHandler.stringrequest(idendpoint+loginLocalDAO.getLogin().getUsername(),new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 medics.setMap(response);
@@ -215,6 +224,7 @@ public class SignupActvity extends AppCompatActivity {
 
                                 try {
                                     jsonbody.put("map",medics.getMap());
+                                    jsonbody.put("name",medics.getName());
                                     jsonbody.put("date",medics.getDate());
                                     jsonbody.put("treatment_for",medics.getTreatment_for());
                                     jsonbody.put("prescribed_by",medics.getPrescribed_by());
@@ -251,7 +261,9 @@ public class SignupActvity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent mainswitch = new Intent(SignupActvity.this, ImageReader.class);
+                mainswitch.putExtra("email",loginLocalDAO.getLogin().getEmail());
                 SignupActvity.this.startActivity(mainswitch);
+
 
             }
         });
@@ -261,12 +273,13 @@ public class SignupActvity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
+
             super.onBackPressed();
-        }
+            loginLocalDAO.resetDb();
+        Toast toast=Toast.makeText(getApplicationContext(),"SESSION LOST: Start Signup process Again....",Toast.LENGTH_SHORT);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.show();
+
     }
 
 
@@ -305,7 +318,15 @@ public class SignupActvity extends AppCompatActivity {
     };
 
 
-
+    private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    public static String randomAlphaNumeric(int count) {
+        StringBuilder builder = new StringBuilder();
+        while (count-- != 0) {
+            int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
+            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+        }
+        return builder.toString();
+    }
 
 
 }

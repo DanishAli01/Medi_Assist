@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.danishali.assignment03.myapplication.R;
+import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Accounts.LoginActivity;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.DashBoard.MainActivity;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.GPList.GpList;
 import com.example.danishali.assignment03.myapplication.com.example.danishali.assignment03.myapplication.Login.Login;
@@ -40,6 +41,8 @@ public class Booking extends AppCompatActivity {
     private ImageView qr;
     private ImageView bookings;
     private LoginLocalDAO loginLocalDAO;
+
+    private ImageView logout;
 
 
 
@@ -139,6 +142,19 @@ public class Booking extends AppCompatActivity {
 
                 Intent mainswitch = new Intent(Booking.this, Booking.class);
                 mainswitch.putExtra("ID",loginLocalDAO.getLogin().getId());
+                Booking.this.startActivity(mainswitch);
+                onStop();
+
+            }
+        });
+
+        logout = (ImageView)findViewById(R.id.log_out);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent mainswitch = new Intent(Booking.this, LoginActivity.class);
+                loginLocalDAO.resetDb();
                 Booking.this.startActivity(mainswitch);
                 onStop();
 
